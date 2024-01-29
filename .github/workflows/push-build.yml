@@ -6,6 +6,10 @@ on:
       - staging
       - production
 
+permissions:
+  pull-requests: write
+  statuses: write
+
 jobs:
   update-production-pr-gate:
     name: Update production PR gate
