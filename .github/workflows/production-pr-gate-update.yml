@@ -35,5 +35,5 @@ jobs:
             /repos/${{ github.repository }}/statuses/${{ env.PROD_POTENTIAL_MERGE_COMMIT }} \
             -f state='success' \
             -f target_url="https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}" \
-            -f description="Staging release PR merged" \
-            -f context="${{github.event.head_commit.message}}" 
+            -f description="${{github.event.head_commit.message}}" \
+            -f context="Staging release PR merged"
