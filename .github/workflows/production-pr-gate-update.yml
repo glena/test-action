@@ -14,12 +14,12 @@ jobs:
   update-status:
     runs-on: ubuntu-20.04
     steps:
-      - id: Find open production PR
+      - name: Find open production PR
         run: |
           PROD_POTENTIAL_MERGE_COMMIT=$(gh pr list -B production -s open --json potentialMergeCommit -q ".[0].potentialMergeCommit.oid")
           echo "PROD_POTENTIAL_MERGE_COMMIT=$PROD_POTENTIAL_MERGE_COMMIT" >> $GITHUB_OUTPUT
 
-      - id: Push commit state
+      - name: Push commit state
         run: |
           curl --request POST \
           --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ steps.vars.outputs.PROD_POTENTIAL_MERGE_COMMIT }} \
