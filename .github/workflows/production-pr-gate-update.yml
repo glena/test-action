@@ -24,15 +24,15 @@ jobs:
 
       - name: Find open production PR
         run: |
-          PROD_POTENTIAL_MERGE_COMMIT=$(gh pr list -B production -s open --json commits -q ".|first.commits|last.oid")
-          echo "PROD_POTENTIAL_MERGE_COMMIT=$PROD_POTENTIAL_MERGE_COMMIT" >> $GITHUB_ENV
+          CURRENT_COMMMIT=$(git log -1 --format="%H")
+          echo "CURRENT_COMMMIT=$CURRENT_COMMMIT" >> $GITHUB_ENV
       - name: Push commit state
         run: |
           gh api \
             --method POST \
             -H "Accept: application/vnd.github+json" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
-            /repos/${{ github.repository }}/statuses/${{ env.PROD_POTENTIAL_MERGE_COMMIT }} \
+            /repos/${{ github.repository }}/statuses/${{ env.CURRENT_COMMMIT }} \
             -f state='success' \
             -f target_url="https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}" \
             -f description="${{github.event.head_commit.message}}" \
