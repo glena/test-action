@@ -1,0 +1,15 @@
+name: TEST
+
+on:
+  push:
+    branches:
+      - staging
+      - production
+
+jobs:
+  update-production-pr-gate:
+    name: Update production PR gate
+    if: ${{ github.ref_name == 'staging' }}
+    uses: ./.github/workflows/production-pr-gate-update.yml
+    secrets: inherit
+

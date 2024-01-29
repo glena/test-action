@@ -1,0 +1,32 @@
+name: Update production PR gate
+
+on:
+  push:
+    branches:
+      - staging
+
+permissions:
+  pull-requests: write
+  statuses: write
+
+jobs:
+  update-status:
+    runs-on: ubuntu-20.04
+    steps:
+      - id: Find open production PR
+        run: |
+          PROD_POTENTIAL_MERGE_COMMIT=$(gh pr list -B production -s open --json potentialMergeCommit -q ".[0].potentialMergeCommit.oid")
+          echo "PROD_POTENTIAL_MERGE_COMMIT=$PROD_POTENTIAL_MERGE_COMMIT" >> $GITHUB_OUTPUT
+
+      - id: Push commit state
+        run: |
+          curl --request POST \
+          --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ steps.vars.outputs.PROD_POTENTIAL_MERGE_COMMIT }} \
+          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          --header 'content-type: application/json' \
+          --data '{
+            "state": "Staging release merged",
+            "context": "${{github.event.head_commit.message}}",
+            "target_url": "${{ github.event.workflow_run.html_url }}"
+            }' \
+          --fail
