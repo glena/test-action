@@ -17,6 +17,10 @@ jobs:
   update-status:
     runs-on: ubuntu-20.04
     steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
       - name: Find open production PR
         run: |
           PROD_POTENTIAL_MERGE_COMMIT=$(gh pr list -B production -s open --json potentialMergeCommit -q ".[0].potentialMergeCommit.oid")
