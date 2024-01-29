@@ -23,8 +23,8 @@ jobs:
 
       - name: Find open production PR
         run: |
-          export PROD_POTENTIAL_MERGE_COMMIT=$(gh pr list -B production -s open --json potentialMergeCommit -q ".[0].potentialMergeCommit.oid")
-          echo "::set-env name=PROD_POTENTIAL_MERGE_COMMIT::$PROD_POTENTIAL_MERGE_COMMIT"
+          PROD_POTENTIAL_MERGE_COMMIT=$(gh pr list -B production -s open --json potentialMergeCommit -q ".[0].potentialMergeCommit.oid")
+          echo "PROD_POTENTIAL_MERGE_COMMIT=$PROD_POTENTIAL_MERGE_COMMIT" >> $GITHUB_ENV
       - name: Push commit state
         run: |
           curl --request POST \
