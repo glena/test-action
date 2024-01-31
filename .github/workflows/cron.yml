@@ -22,7 +22,6 @@ jobs:
           path: test
 
       - name: Update production PR gate
-        if: ${{ matrix.target.name == 'staging' }}
         uses: ./.github/workflows/production-pr-gate-update.yml
         with:
           context: "Smoke tests successfully run ${{ matrix.target.name }}"
