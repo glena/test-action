@@ -18,6 +18,8 @@ jobs:
     steps:
       - name: Checkout service repository
         uses: actions/checkout@v4
+        with:
+          path: test
 
       - name: pwd
         run: pwd
@@ -25,12 +27,11 @@ jobs:
       - name: list
         run: ls -al
 
-  update-production-pr-gate:
-    name: Update production PR gate
-    uses: ./.github/workflows/production-pr-gate-update.yml
-    secrets: inherit
-    with:
-      context: "Smoke tests successfully run ${{ matrix.target.name }}"
+      - name: Update production PR gate
+        if: ${{ matrix.target.name == 'staging' }}
+        uses: ./.github/actions/production-pr-gate-update
+        with:
+          context: "Smoke tests successfully run ${{ matrix.target.name }}"
 
 
           
