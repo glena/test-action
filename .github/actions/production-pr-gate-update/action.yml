@@ -5,6 +5,9 @@ inputs:
   context:
     required: true
     description: "Commit status context"
+  GITHUB_TOKEN:
+    required: true
+    description: "The action GH token"
 
 runs:
   using: "composite"
@@ -12,7 +15,7 @@ runs:
     - name: Find open staging PR
       shell: bash
       env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ inputs.GITHUB_TOKEN }}
       run: |
         STAGING_PR_COMMIT=$(gh pr list -B staging -s open --json commits -q ".|first.commits|last.oid")
         echo "STAGING_PR_COMMIT=$STAGING_PR_COMMIT" >> $GITHUB_ENV
@@ -23,7 +26,7 @@ runs:
     - name: Find open production PR
       shell: bash
       env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ inputs.GITHUB_TOKEN }}
       run: |
         PROD_PR_COMMIT=$(gh pr list -B production -s open --json commits -q ".|first.commits|last.oid")
         echo "PROD_PR_COMMIT=$PROD_PR_COMMIT" >> $GITHUB_ENV
@@ -32,7 +35,7 @@ runs:
       if: ${{ env.PROD_PR_COMMIT != '' }}
       env:
         COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ inputs.GITHUB_TOKEN }}
       run: |
         gh api \
           --method POST \

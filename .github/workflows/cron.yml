@@ -31,6 +31,7 @@ jobs:
         uses: ./test/.github/actions/production-pr-gate-update
         with:
           context: "Smoke tests successfully run ${{ matrix.target.name }}"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
           

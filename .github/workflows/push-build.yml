@@ -21,4 +21,5 @@ jobs:
         uses: ./.github/actions/production-pr-gate-update
         with:
           context: "Staging release PR merged"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
