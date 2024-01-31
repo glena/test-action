@@ -28,7 +28,6 @@ jobs:
         run: ls -al
 
       - name: Update production PR gate
-        if: ${{ matrix.target.name == 'staging' }}
         uses: ./.github/actions/production-pr-gate-update
         with:
           context: "Smoke tests successfully run ${{ matrix.target.name }}"
