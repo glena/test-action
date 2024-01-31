@@ -9,6 +9,7 @@ on:
 permissions:
   pull-requests: write
   statuses: write
+  contents: read
 
 jobs:
   update-production-pr-gate:

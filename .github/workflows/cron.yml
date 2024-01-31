@@ -1,0 +1,29 @@
+name: Deploy Smoke Test
+on:
+  schedule:
+    # Run the smoke test every 15 minutes.
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+permissions:
+  pull-requests: write
+  statuses: write
+  contents: read
+
+jobs:
+  run_cron_job:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout service repository
+        uses: actions/checkout@v4
+        with:
+          path: test
+
+      - name: Update production PR gate
+        if: ${{ matrix.target.name == 'staging' }}
+        uses: ./.github/workflows/production-pr-gate-update.yml
+        with:
+          context: "Smoke tests successfully run ${{ matrix.target.name }}"
+          

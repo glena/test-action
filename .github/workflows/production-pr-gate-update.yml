@@ -5,10 +5,16 @@ on:
     branches:
       - staging
   workflow_call:
+    inputs:
+      context:
+        required: true
+        description: "Commit status context"
+        type: string
 
 permissions:
   pull-requests: write
   statuses: write
+  contents: read
 
 env:
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -18,22 +24,30 @@ jobs:
     name: Update production PR gate
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
+      - name: Checkout service repository
+        uses: actions/checkout@v4
+      - name: Find open staging PR
+        run: |
+          STAGING_PR_COMMIT=$(gh pr list -B staging -s open --json commits -q ".|first.commits|last.oid")
+          echo "STAGING_PR_COMMIT=$STAGING_PR_COMMIT" >> $GITHUB_ENV
+      - name: Assert no open staging PR
+        if: ${{ env.STAGING_PR_COMMIT != '' }}
+        run: exit 1
       - name: Find open production PR
         run: |
-          CURRENT_COMMMIT=$(git log -1 --format="%H")
-          echo "CURRENT_COMMMIT=$CURRENT_COMMMIT" >> $GITHUB_ENV
+          PROD_PR_COMMIT=$(gh pr list -B production -s open --json commits -q ".|first.commits|last.oid")
+          echo "PROD_PR_COMMIT=$PROD_PR_COMMIT" >> $GITHUB_ENV
       - name: Push commit state
+        if: ${{ env.PROD_PR_COMMIT != '' }}
+        env:
+          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
         run: |
           gh api \
             --method POST \
             -H "Accept: application/vnd.github+json" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
-            /repos/${{ github.repository }}/statuses/${{ env.CURRENT_COMMMIT }} \
+            /repos/${{ github.repository }}/statuses/${{ env.PROD_PR_COMMIT }} \
             -f state='success' \
             -f target_url="https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}" \
-            -f description="${{github.event.head_commit.message}}" \
-            -f context="Staging release PR merged"
+            -f description="$TITLE" \
+            -f context="${{ inputs.context }}"
