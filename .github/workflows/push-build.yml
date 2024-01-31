@@ -17,6 +17,8 @@ jobs:
     if: ${{ github.ref_name == 'staging' }}
     runs-on: ubuntu-20.04
     steps: 
+      - name: Checkout service repository
+        uses: actions/checkout@v4
       - name: Update production PR gate
         uses: ./.github/actions/production-pr-gate-update
         with:

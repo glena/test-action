@@ -8,6 +8,10 @@ inputs:
   GITHUB_TOKEN:
     required: true
     description: "The action GH token"
+  path: 
+    required: false
+    description: "The directory where the repo was cheched out"
+    default: "."
 
 runs:
   using: "composite"
@@ -17,7 +21,7 @@ runs:
       env:
         GH_TOKEN: ${{ inputs.GITHUB_TOKEN }}
       run: |
-        STAGING_PR_COMMIT=$(gh pr list -B staging -s open --json commits -q ".|first.commits|last.oid")
+        cd ${{ inputs.path }}; STAGING_PR_COMMIT=$(gh pr list -B staging -s open --json commits -q ".|first.commits|last.oid")
         echo "STAGING_PR_COMMIT=$STAGING_PR_COMMIT" >> $GITHUB_ENV
     - name: Assert no open staging PR
       shell: bash
@@ -28,7 +32,7 @@ runs:
       env:
         GH_TOKEN: ${{ inputs.GITHUB_TOKEN }}
       run: |
-        PROD_PR_COMMIT=$(gh pr list -B production -s open --json commits -q ".|first.commits|last.oid")
+        cd ${{ inputs.path }}; PROD_PR_COMMIT=$(gh pr list -B production -s open --json commits -q ".|first.commits|last.oid")
         echo "PROD_PR_COMMIT=$PROD_PR_COMMIT" >> $GITHUB_ENV
     - name: Push commit state
       shell: bash
