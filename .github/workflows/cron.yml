@@ -25,8 +25,13 @@ jobs:
       - name: list
         run: ls -al
 
-      - name: Update production PR gate
-        uses: ./.github/workflows/production-pr-gate-update.yml
-        with:
-          context: "Smoke tests successfully run ${{ matrix.target.name }}"
+  update-production-pr-gate:
+    name: Update production PR gate
+    if: ${{ github.ref_name == 'staging' }}
+    uses: ./.github/workflows/production-pr-gate-update.yml
+    secrets: inherit
+    with:
+      context: "Smoke tests successfully run ${{ matrix.target.name }}"
+
+
           
