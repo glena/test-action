@@ -28,7 +28,7 @@ jobs:
         run: ls -al
 
       - name: Update production PR gate
-        uses: ./.github/actions/production-pr-gate-update
+        uses: ./test/.github/actions/production-pr-gate-update
         with:
           context: "Smoke tests successfully run ${{ matrix.target.name }}"
 
