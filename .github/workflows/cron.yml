@@ -21,8 +21,11 @@ jobs:
         with:
           path: test
 
+      - name: list
+        run: ls -al
+
       - name: Update production PR gate
-        uses: ./test/.github/workflows/production-pr-gate-update.yml
+        uses: ./.github/workflows/production-pr-gate-update.yml
         with:
           context: "Smoke tests successfully run ${{ matrix.target.name }}"
           
