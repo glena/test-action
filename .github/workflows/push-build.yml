@@ -17,4 +17,6 @@ jobs:
     if: ${{ github.ref_name == 'staging' }}
     uses: ./.github/workflows/production-pr-gate-update.yml
     secrets: inherit
+    with:
+      context: "Staging PR merged"
 
