@@ -1,4 +1,4 @@
-name: Token Test
+name: Pulumi up
 on:
   workflow_dispatch:
 
@@ -35,11 +35,11 @@ jobs:
             -d 'subject_token_type=urn:ietf:params:oauth:token-type:id_token' \
             -d 'requested_token_type=urn:pulumi:token-type:access_token:organization' \
             -d 'subject_token=${{ env.OIDC_GH_TOKEN }}' \
-            https://dcd9-190-193-167-140.ngrok-free.app/api/oauth/token | jq -r '.access_token')
+            https://api.pulumi.com/oauth/token | jq -r '.access_token')
           echo "::add-mask::$PULUMI_ACCESS_TOKEN" 
           echo "PULUMI_ACCESS_TOKEN=$PULUMI_ACCESS_TOKEN" >> $GITHUB_ENV
 
       - name: pulumi up
-        run: PULUMI_API=https://dcd9-190-193-167-140.ngrok-free.app pulumi up --stack=gh --skip-preview 
+        run: pulumi up --stack=gh --skip-preview 
           
   
