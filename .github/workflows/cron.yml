@@ -1,4 +1,4 @@
-name: Deploy Smoke Test
+name: Token Test
 on:
   workflow_dispatch:
 
