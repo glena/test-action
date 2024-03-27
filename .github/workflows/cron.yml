@@ -4,6 +4,7 @@ on:
 
 permissions:
   id-token: write
+  contents: read
 
 jobs:
   run_cron_job:
@@ -11,10 +12,15 @@ jobs:
     timeout-minutes: 30
 
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Install pulumi
+        uses: pulumi/actions@v4
+
       - name: fetch gh token
         run: |
           OIDC_GH_TOKEN=$(curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL"  | jq -r '.value')
-          echo $OIDC_GH_TOKEN
           echo "OIDC_GH_TOKEN=$OIDC_GH_TOKEN" >> $GITHUB_ENV
 
       - name: fetch pulumi token
@@ -27,10 +33,8 @@ jobs:
             -d 'requested_token_type=urn:pulumi:token-type:access_token:organization' \
             -d 'subject_token=${{ env.OIDC_GH_TOKEN }}' \
             https://dcd9-190-193-167-140.ngrok-free.app/api/oauth/token | jq -r '.access_token')
-          echo $PULUMI_ACCESS_TOKEN
           echo "PULUMI_ACCESS_TOKEN=$PULUMI_ACCESS_TOKEN" >> $GITHUB_ENV
-        
 
-
-
-          
+      - name: Get secrets
+        run: pulumi preview
+  
