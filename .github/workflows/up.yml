@@ -40,6 +40,6 @@ jobs:
           echo "PULUMI_ACCESS_TOKEN=$PULUMI_ACCESS_TOKEN" >> $GITHUB_ENV
 
       - name: pulumi up
-        run: pulumi up --stack=gh --skip-preview 
+        run: pulumi up --stack=demo-agent/gh --skip-preview 
           
   
