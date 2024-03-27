@@ -19,7 +19,7 @@ jobs:
         uses: pulumi/actions@v4
 
       - name: Install deps
-        uses: yarn
+        run: yarn
 
       - name: fetch gh token
         run: |
