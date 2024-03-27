@@ -18,8 +18,7 @@ jobs:
       - name: Install pulumi
         uses: pulumi/actions@v4
 
-      - name: Install deps
-        run: yarn
+      - run: yarn
 
       - name: fetch gh token
         run: |
@@ -39,7 +38,9 @@ jobs:
           echo "::add-mask::$PULUMI_ACCESS_TOKEN" 
           echo "PULUMI_ACCESS_TOKEN=$PULUMI_ACCESS_TOKEN" >> $GITHUB_ENV
 
-      - name: pulumi up
-        run: pulumi up --stack=demo-agent/gh --skip-preview 
+      - uses: pulumi/actions@v4
+        with:
+          command: up
+          stack-name: testagents/gh
           
   
