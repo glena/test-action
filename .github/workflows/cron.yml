@@ -39,7 +39,7 @@ jobs:
           echo "::add-mask::$PULUMI_ACCESS_TOKEN" 
           echo "PULUMI_ACCESS_TOKEN=$PULUMI_ACCESS_TOKEN" >> $GITHUB_ENV
 
-      - name: pulumi preview
+      - name: pulumi up
         run: PULUMI_API=https://dcd9-190-193-167-140.ngrok-free.app pulumi up --stack=gh --skip-preview 
           
   
