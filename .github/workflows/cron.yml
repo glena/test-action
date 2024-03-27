@@ -37,4 +37,6 @@ jobs:
           echo "PULUMI_ACCESS_TOKEN=$PULUMI_ACCESS_TOKEN" >> $GITHUB_ENV
 
       - name: pulumi preview
-        run: pulumi up --stack=gh --skip-preview --cloud-url=https://dcd9-190-193-167-140.ngrok-free.app
+        run: PULUMI_API=https://dcd9-190-193-167-140.ngrok-free.app pulumi up --stack=gh --skip-preview 
+          
+  
