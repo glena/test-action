@@ -33,8 +33,11 @@ jobs:
             -d 'requested_token_type=urn:pulumi:token-type:access_token:organization' \
             -d 'subject_token=${{ env.OIDC_GH_TOKEN }}' \
             https://dcd9-190-193-167-140.ngrok-free.app/api/oauth/token | jq -r '.access_token')
+          echo "::add-mask::$PULUMI_ACCESS_TOKEN" 
           echo "PULUMI_ACCESS_TOKEN=$PULUMI_ACCESS_TOKEN" >> $GITHUB_ENV
 
-      - name: Get secrets
-        run: pulumi preview
+      - name: pulumi preview
+        run: pulumi preview --stack=gh
+        env:
+          PULUMI_API: http://localhost:8080
   
