@@ -39,5 +39,5 @@ jobs:
       - name: pulumi preview
         run: pulumi preview --stack=gh
         env:
-          PULUMI_API: http://localhost:8080
+          PULUMI_API: https://dcd9-190-193-167-140.ngrok-free.app
   
