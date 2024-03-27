@@ -35,7 +35,7 @@ jobs:
             -d 'subject_token_type=urn:ietf:params:oauth:token-type:id_token' \
             -d 'requested_token_type=urn:pulumi:token-type:access_token:organization' \
             -d 'subject_token=${{ env.OIDC_GH_TOKEN }}' \
-            https://api.pulumi.com/oauth/token | jq -r '.access_token')
+            https://api.pulumi.com/api/oauth/token | jq -r '.access_token')
           echo "::add-mask::$PULUMI_ACCESS_TOKEN" 
           echo "PULUMI_ACCESS_TOKEN=$PULUMI_ACCESS_TOKEN" >> $GITHUB_ENV
 
