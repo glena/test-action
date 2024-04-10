@@ -27,7 +27,7 @@ jobs:
 
       - name: fetch pulumi token
         run: |
-          PULUMI_ACCESS_TOKEN=$(curl -X POST  \
+          PULUMI_ACCESS_TOKEN=$(curl --verbose -X POST  \
             -H 'Content-Type: application/x-www-form-urlencoded' \
             -d 'audience=urn:pulumi:org:testagents' \
             -d 'grant_type=urn:ietf:params:oauth:grant-type:token-exchange' \
