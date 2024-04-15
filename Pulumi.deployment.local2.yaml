@@ -1,0 +1,20 @@
+deploymentSettings:
+  executorContext: {}
+  sourceContext:
+    git:
+      branch: main
+      repoDir: .
+  gitHub:
+    repository: glena/test-action
+    deployCommits: true
+    previewPullRequests: true
+  operationContext:
+    preRunCommands: []
+    operation: ""
+    environmentVariables: {}
+    options:
+      skipInstallDependencies: false
+      skipIntermediateDeployments: true
+      shell: ""
+      deleteAfterDestroy: false
+      remediateIfDriftDetected: false
