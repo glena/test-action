@@ -1,7 +1,8 @@
 deploymentSettings:
+  executorContext: {}
   sourceContext:
     git:
-      branch: refs/heads/main
+      branch: main
       repoDir: .
   gitHub:
     repository: glena/test-action
@@ -13,7 +14,8 @@ deploymentSettings:
     environmentVariables: {}
     options:
       skipInstallDependencies: false
-      skipIntermediateDeployments: false
+      skipIntermediateDeployments: true
       shell: ""
       deleteAfterDestroy: false
       remediateIfDriftDetected: false
+  agentPoolID: 51035bee-a4d6-4b63-9ff6-418775c5da8d
