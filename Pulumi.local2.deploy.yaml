@@ -7,7 +7,7 @@ deploymentSettings:
   gitHub:
     repository: glena/test-action
     deployCommits: true
-    previewPullRequests: true
+    previewPullRequests: false
   operationContext:
     preRunCommands: []
     operation: ""
