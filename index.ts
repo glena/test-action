@@ -10,4 +10,4 @@
 
 // export const bucketName = bucket.id;
 
-export const someOutput = "the value";
+export const someOutput = "the value2";
