@@ -20,27 +20,10 @@ jobs:
 
       - run: yarn
 
-      - name: fetch gh token
-        run: |
-          OIDC_GH_TOKEN=$(curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL"  | jq -r '.value')
-          echo "OIDC_GH_TOKEN=$OIDC_GH_TOKEN" >> $GITHUB_ENV
-
-      - name: fetch pulumi token
-        run: |
-          PULUMI_ACCESS_TOKEN=$(curl -X POST  \
-            -H 'Content-Type: application/x-www-form-urlencoded' \
-            -d 'audience=urn:pulumi:org:testagents' \
-            -d 'grant_type=urn:ietf:params:oauth:grant-type:token-exchange' \
-            -d 'subject_token_type=urn:ietf:params:oauth:token-type:id_token' \
-            -d 'requested_token_type=urn:pulumi:token-type:access_token:organization' \
-            -d 'subject_token=${{ env.OIDC_GH_TOKEN }}' \
-            https://api.pulumi.com/api/oauth/token | jq -r '.access_token')
-          echo "::add-mask::$PULUMI_ACCESS_TOKEN" 
-          echo "PULUMI_ACCESS_TOKEN=$PULUMI_ACCESS_TOKEN" >> $GITHUB_ENV
-
-      - uses: pulumi/actions@v4
+      - uses: pulumi/actions@german/oidc
         with:
           command: up
           stack-name: testagents/gh
-          
-  
+          oidc-pulumi-organization: testagents
+          oidc-requested-token-type: urn:pulumi:token-type:access_token:organization
+
