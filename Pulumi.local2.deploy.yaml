@@ -1,5 +1,5 @@
 deploymentSettings:
-executorContext: {}
+-executorContext: {}
   sourceContext:
     git:
       branch: main
