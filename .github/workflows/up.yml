@@ -15,9 +15,6 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Install pulumi
-        uses: pulumi/actions@german/oidc
-
       - run: yarn
 
       - uses: pulumi/actions@german/oidc
@@ -26,5 +23,5 @@ jobs:
           oidc-pulumi-organization: testagents
           oidc-requested-token-type: urn:pulumi:token-type:access_token:organization
 
-      - run: echo ${{toJSON(steps.pulumi.outputs)}}
+      - run: pulumi whoami
 
