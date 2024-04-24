@@ -21,9 +21,10 @@ jobs:
       - run: yarn
 
       - uses: pulumi/actions@german/oidc
+        id: pulumi
         with:
-          command: up
-          stack-name: testagents/gh
           oidc-pulumi-organization: testagents
           oidc-requested-token-type: urn:pulumi:token-type:access_token:organization
+
+      - run: echo ${{toJSON(steps.pulumi.outputs)}}
 
