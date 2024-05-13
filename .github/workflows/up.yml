@@ -29,5 +29,5 @@ jobs:
           oidc-pulumi-organization: testagents
           oidc-requested-token-type: urn:pulumi:token-type:access_token:organization
 
-      - run: PULUMI_ACCESS_TOKEN=${{steps.pulumi.outputs.pulumi-access-token}} pulumi whoami
+      - run: pulumi whoami
 
