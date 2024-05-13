@@ -17,13 +17,13 @@ jobs:
 
       - run: yarn
 
-      - uses: pulumi/auth-actions@main
+      - uses: https://github.com/pulumi/auth-actions
         id: pulumi-login
         with:
           organization: testagents
           requested-token-type: urn:pulumi:token-type:access_token:organization
           
-      - uses: pulumi/actions@german/oidc
+      - uses: pulumi/actions
         id: pulumi
         with:
           oidc-pulumi-organization: testagents
