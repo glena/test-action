@@ -17,6 +17,8 @@ jobs:
 
       - run: yarn
 
+      - run: curl -fsSL https://get.pulumi.com/esc/install.sh | sh
+
       - uses: pulumi/auth-actions@v1
         id: pulumi-login
         with:
@@ -27,4 +29,8 @@ jobs:
         id: pulumi
 
       - run: pulumi whoami
+
+      - run: esc env open testagents/test --format dotenv >> $GITHUB_ENV
+
+      - run: echo ${env.EXAMPLE_SETTING}
 
