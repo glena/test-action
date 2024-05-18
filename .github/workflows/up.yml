@@ -17,7 +17,9 @@ jobs:
 
       - run: yarn
 
-      - run: curl -fsSL https://get.pulumi.com/esc/install.sh | sh
+      - run: |
+          curl -fsSL https://get.pulumi.com/esc/install.sh | sh
+          export PATH=~/.pulumi/bin:$PATH
 
       - uses: pulumi/auth-actions@v1
         id: pulumi-login
