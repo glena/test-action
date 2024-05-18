@@ -25,9 +25,6 @@ jobs:
           
       - uses: pulumi/actions@v5
         id: pulumi
-        with:
-          oidc-pulumi-organization: testagents
-          oidc-requested-token-type: urn:pulumi:token-type:access_token:organization
 
       - run: pulumi whoami
 
