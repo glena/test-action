@@ -34,6 +34,8 @@ jobs:
 
       - run: echo ${{env.EXAMPLE_SETTING}}
 
+      - run: /home/runner/.pulumi/bin/esc env open testagents/test --format dotenv
+
       - run: /home/runner/.pulumi/bin/esc env open testagents/test --format dotenv >> $GITHUB_ENV
 
       - run: echo ${{env.EXAMPLE_SETTING}}
