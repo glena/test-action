@@ -1,13 +1,10 @@
-import * as aws from "@pulumi/aws";
+import * as pulumi from "@pulumi/pulumi";
+import * as gcp from "@pulumi/gcp";
 
-const bucket = new aws.s3.Bucket("my-bucket", {
-  acl: "private",
-  tags: {
-    Environment: "Dev",
-    Name: "My bucket",
-  },
+// Create a Google Cloud resource (Storage Bucket)
+const bucket = new gcp.storage.Bucket("my-bucket", {
+    location: "US",
 });
 
-export const bucketName = bucket.id;
-
-export const someOutput = "the value2";
+// Export the DNS name of the bucket
+export const bucketName = bucket.url;
