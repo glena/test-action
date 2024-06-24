@@ -1,8 +1,3 @@
-settings:
-  sourceContext:
-    git:
-      repoURL: ""
-      branch: refs/heads/gcp
       repoDir: .
   gitHub:
     repository: glena/test-action
