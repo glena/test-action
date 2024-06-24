@@ -1,4 +1,5 @@
-      repoDir: .
+      
+		repoDir: .
   gitHub:
     repository: glena/test-action
     deployCommits: true
