@@ -9,7 +9,8 @@ settings:
     deployCommits: true
     previewPullRequests: true
   operationContext:
-    preRunCommands: []
+    preRunCommands:
+      - ls
     operation: ""
     environmentVariables: {}
     options:
