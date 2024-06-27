@@ -9,13 +9,8 @@ settings:
     deployCommits: true
     previewPullRequests: true
   operationContext:
-    preRunCommands:
-      - ls
-    operation: ""
-    environmentVariables: {}
     options:
       skipInstallDependencies: false
       skipIntermediateDeployments: false
-      shell: ""
       deleteAfterDestroy: false
       remediateIfDriftDetected: false
