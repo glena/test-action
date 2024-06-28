@@ -1,1 +1,1 @@
-Test GH actions for release pipeline gating!!!
+Test GH actions for release pipeline gating!
