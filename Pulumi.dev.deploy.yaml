@@ -1,7 +1,8 @@
 settings:
+  executorContext: {}
   sourceContext:
     git:
-      branch: refs/heads/cloud
+      branch: cloud
       repoDir: .
   gitHub:
     repository: glena/test-action
@@ -11,6 +12,8 @@ settings:
     environmentVariables:
       key:
         ciphertext: AAABAA56sIr8H8Z/bt1G2PAiDRv36nn/S7a8IRbpkyw3bBo/MQ==
+    preRunCommands:
+      - echo "Hello world"
     options:
       skipInstallDependencies: false
       skipIntermediateDeployments: true
