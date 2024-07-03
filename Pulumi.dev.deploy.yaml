@@ -8,6 +8,9 @@ settings:
     deployCommits: true
     previewPullRequests: true
   operationContext:
+    environmentVariables:
+      key:
+        ciphertext: AAABAA56sIr8H8Z/bt1G2PAiDRv36nn/S7a8IRbpkyw3bBo/MQ==
     options:
       skipInstallDependencies: false
       skipIntermediateDeployments: true
