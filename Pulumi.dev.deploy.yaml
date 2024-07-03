@@ -7,6 +7,11 @@ settings:
     repository: glena/test-action
     deployCommits: true
   operationContext:
+    preRunCommands:
+      - echo "hello world"
+    environmentVariables:
+      key:
+        ciphertext: AAABAEyG46qUHnRP6bwxGLR+CnZ4HiT6gFBkze/otWAlyOsbbw==
     options:
       skipInstallDependencies: false
       skipIntermediateDeployments: true
