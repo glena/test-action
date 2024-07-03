@@ -7,8 +7,6 @@ settings:
     repository: glena/test-action
     deployCommits: true
   operationContext:
-    preRunCommands:
-      - "echo \"hello world\""
     options:
       skipInstallDependencies: false
       skipIntermediateDeployments: true
