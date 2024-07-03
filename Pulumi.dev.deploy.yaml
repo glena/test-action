@@ -7,9 +7,6 @@ settings:
     repository: glena/test-action
     deployCommits: true
   operationContext:
-    environmentVariables:
-      key:
-        ciphertext: AAABAEQVnFm+B9K5hrUgclkEoNlZ8KDf2yJy9j6/K4XdCidNiw==
     options:
       skipInstallDependencies: false
       skipIntermediateDeployments: true
