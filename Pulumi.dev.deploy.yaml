@@ -11,7 +11,7 @@ settings:
     oidc: {}
     environmentVariables:
       key:
-        ciphertext: QUFBQkFBZjN5ZlJJL01XcDJKbGhyNmw1cW94dFB1UXdQYlZNazNtNEl1bzV3Y0dy
+        ciphertext: UVVGQlFrRkJaak41WmxKSkwwMVhjREpLYkdoeU5tdzFjVzk0ZEZCMVVYZFFZbFpOYXpOdE5FbDFielYzWTBkeQ==
     options:
       skipInstallDependencies: false
       skipIntermediateDeployments: false
