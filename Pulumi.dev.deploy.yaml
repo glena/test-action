@@ -10,7 +10,8 @@ settings:
   operationContext:
     oidc: {}
     environmentVariables:
-      env1: "789"
+      env1:
+        ciphertext: AAABAJcABmoP4OYzRFYZwkNtVRQ3nc/3yZgki2+PStVvQBk=
     options:
       skipInstallDependencies: false
       skipIntermediateDeployments: false
