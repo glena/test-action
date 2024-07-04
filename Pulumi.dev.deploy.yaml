@@ -9,6 +9,8 @@ settings:
     previewPullRequests: true
   operationContext:
     oidc: {}
+    environmentVariables:
+      env1: "789"
     options:
       skipInstallDependencies: false
       skipIntermediateDeployments: false
