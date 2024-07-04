@@ -9,9 +9,6 @@ settings:
     previewPullRequests: true
   operationContext:
     oidc: {}
-    environmentVariables:
-      key:
-        ciphertext: UVVGQlFrRkJaak41WmxKSkwwMVhjREpLYkdoeU5tdzFjVzk0ZEZCMVVYZFFZbFpOYXpOdE5FbDFielYzWTBkeQ==
     options:
       skipInstallDependencies: false
       skipIntermediateDeployments: false
