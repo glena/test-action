@@ -1,0 +1,16 @@
+settings:
+  executorContext: {}
+  sourceContext:
+    git:
+      branch: cloud
+  gitHub:
+    repository: glena/test-action
+    deployCommits: true
+    previewPullRequests: true
+  operationContext:
+    oidc: {}
+    options:
+      skipInstallDependencies: false
+      skipIntermediateDeployments: false
+      deleteAfterDestroy: false
+      remediateIfDriftDetected: false
