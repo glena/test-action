@@ -1,5 +1,5 @@
 
-name: Pulumi
+name: Pulumi pr
 on:
   push:
 jobs:
@@ -12,6 +12,6 @@ jobs:
         with:
           command: preview
           stack-name: cloud/dev
-          cloud-url: https://501a-181-165-133-47.ngrok-free.app/api
+          cloud-url: https://501a-181-165-133-47.ngrok-free.app
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
