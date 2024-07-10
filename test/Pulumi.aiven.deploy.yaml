@@ -1,0 +1,12 @@
+settings:
+  sourceContext:
+    git:
+      repoURL: git@github.com:glena/test-action.git
+      branch: refs/heads/cloud
+      repoDir: test
+  operationContext:
+    options:
+      skipInstallDependencies: false
+      skipIntermediateDeployments: false
+      deleteAfterDestroy: false
+      remediateIfDriftDetected: false

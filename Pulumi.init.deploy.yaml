@@ -1,0 +1,22 @@
+deploymentSettings:
+  executorContext:
+    executorImage:
+      reference: abcd
+  sourceContext:
+    git:
+      branch: refs/heads/main
+      repoDir: .
+  gitHub:
+    repository: glena/test-action
+    deployCommits: true
+    previewPullRequests: true
+  operationContext:
+    preRunCommands: []
+    operation: ""
+    environmentVariables: {}
+    options:
+      skipInstallDependencies: false
+      skipIntermediateDeployments: false
+      shell: ""
+      deleteAfterDestroy: false
+      remediateIfDriftDetected: false

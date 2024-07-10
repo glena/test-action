@@ -1,3 +1,4 @@
+
 import * as pulumi from "@pulumi/pulumi";
 import * as gcp from "@pulumi/gcp";
 
@@ -8,3 +9,4 @@ import * as gcp from "@pulumi/gcp";
 console.log("hola")
 // Export the DNS name of the bucket
 export const bucketName = "bleh";
+
