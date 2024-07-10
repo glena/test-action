@@ -11,7 +11,7 @@ jobs:
       - uses: pulumi/actions@v5
         with:
           command: preview
-          stack-name: cloud/dev
+          stack-name: test/cloud
           cloud-url: https://501a-181-165-133-47.ngrok-free.app
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
