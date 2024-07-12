@@ -1,0 +1,18 @@
+settings:
+  sourceContext:
+    git:
+      branch: refs/heads/cloud
+      repoDir: .
+  gitHub:
+    repository: glena/test-action
+    deployCommits: true
+    previewPullRequests: true
+  operationContext:
+    environmentVariables:
+      foo:
+        ciphertext: AAABAK5nPeBEkV1xdy4Y19w9AMIC/m/i5CMFFRbS5+OApjI=
+    options:
+      skipInstallDependencies: false
+      skipIntermediateDeployments: true
+      deleteAfterDestroy: false
+      remediateIfDriftDetected: false
