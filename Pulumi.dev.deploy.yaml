@@ -1,4 +1,4 @@
-settings:
+-settings:
   sourceContext:
     git:
       branch: refs/heads/cloud
