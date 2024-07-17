@@ -1,5 +1,5 @@
 settings:
-  sourceContext:
+      - sourceContext:
     git:
       branch: refs/heads/cloud
       repoDir: .
@@ -10,7 +10,7 @@ settings:
   operationContext:
     environmentVariables:
       foo:
-        ciphertext: AAABAEm0AbTUqzeFRgdpDHs6LJ7fNktZzo3rE+kYzhQm2TM=
+        ciphertext: AAABAHNDtZb2OYkGzTtNXhzXy66HiLyayWcmTrGWEC5EOhU=
     options:
       skipInstallDependencies: false
       skipIntermediateDeployments: true
