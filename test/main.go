@@ -4,8 +4,10 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"os"
 	"path"
 	"path/filepath"
+	"strings"
 
 	git "github.com/go-git/go-git/v5"
 	"github.com/go-git/go-git/v5/plumbing"
@@ -53,7 +55,13 @@ type repoLookupImpl struct {
 }
 
 func (r *repoLookupImpl) GetRootDirectory(wd string) (string, error) {
-	return filepath.Rel(r.RepoRoot, wd)
+	dir, err := filepath.Rel(r.RepoRoot, wd)
+
+	if err != nil {
+		return "", err
+	}
+
+	return strings.ReplaceAll(dir, string(os.PathSeparator), "/"), err
 }
 
 func (r *repoLookupImpl) GetBranchName() string {
@@ -113,11 +121,11 @@ func main() {
 		panic(err)
 	}
 
-	dir, err := rl.GetRootDirectory(path.Join(ws.WorkDir(), "something"))
+	dir, err := rl.GetRootDirectory(filepath.Join(ws.WorkDir(), "something"))
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println("GetRootDirectory", path.Join("goproj", "something"), dir)
+	fmt.Println("GetRootDirectory", "goproj/something", dir)
 
 	branch := rl.GetBranchName()
 	if err != nil {
