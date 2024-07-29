@@ -131,5 +131,5 @@ func main() {
 	}
 	fmt.Println("RemoteURL", "https://github.com/pulumi/test-repo.git", remote)
 
-	fmt.Println("GetRepoRoot", path.Join(ws.WorkDir(), ".."), rl.GetRepoRoot())
+	fmt.Println("GetRepoRoot", filepath.Dir(ws.WorkDir()), rl.GetRepoRoot())
 }
