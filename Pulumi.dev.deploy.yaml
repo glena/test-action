@@ -1,0 +1,21 @@
+settings:
+  executorContext: {}
+  sourceContext:
+    git:
+      branch: cloud
+  gitHub:
+    repository: glena/test-action
+    deployCommits: true
+    previewPullRequests: true
+  operationContext:
+    oidc: {}
+    environmentVariables:
+      env1:
+        ciphertext: AAABAJcABmoP4OYzRFYZwkNtVRQ3nc/3yZgki2+PStVvQBk=
+      key:
+        ciphertext: AAABAC1zl8JES7ndGyhYEhgn3t0zqFJOdK0fJ+AbDDy5WKXLtMM=
+    options:
+      skipInstallDependencies: false
+      skipIntermediateDeployments: false
+      deleteAfterDestroy: false
+      remediateIfDriftDetected: false
