@@ -3,7 +3,7 @@ settings:
     git:
       branch: refs/heads/cloud
       repoDir: .
-  - gitHub:
+  -  gitHub:
     repository: glena/test-action
     deployCommits: true
     previewPullRequests: true
