@@ -1,7 +1,6 @@
 settings:
   - sourceContext:
     git:
-
       branch: refs/heads/cloud
       repoDir: .
   gitHub:
