@@ -1,5 +1,5 @@
 settings:
-  sourceContext:
+  - sourceContext:
     git:
       branch: refs/heads/cloud
       repoDir: .
