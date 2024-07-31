@@ -1,5 +1,5 @@
 settings:
-  - sourceContext:
+  sourceContext:
     git:
       branch: refs/heads/cloud
       repoDir: .
@@ -8,12 +8,8 @@ settings:
     deployCommits: true
     previewPullRequests: true
   operationContext:
-    environmentVariables:
-      foo:
-        ciphertext: AAABAHNDtZb2OYkGzTtNXhzXy66HiLyayWcmTrGWEC5EOhU=
     options:
       skipInstallDependencies: false
       skipIntermediateDeployments: true
       deleteAfterDestroy: false
       remediateIfDriftDetected: false
-  agentPoolID: 51035bee-a4d6-4b63-9ff6-418775c5da8d
