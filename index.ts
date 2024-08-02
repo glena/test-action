@@ -4,4 +4,4 @@ console.log(process.env)
 console.log(process.env.secret?.split(""))
 
 // Export the DNS name of the bucket
-export const bucketName = "dummy";
+export const bucketName = "dummy pr";
