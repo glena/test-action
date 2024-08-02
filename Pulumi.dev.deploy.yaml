@@ -15,7 +15,7 @@ settings:
     environmentVariables:
       secret:
         ciphertext: AAABAFzYCrJ4CkOhhpoh5CnioZWtqRjeC8NGY9j2382fhutwAg==
-      test: value
+      test: valuei-pr
     options:
       skipInstallDependencies: false
       skipIntermediateDeployments: false
