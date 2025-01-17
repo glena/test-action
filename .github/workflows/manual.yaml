@@ -1,4 +1,4 @@
-name: Pulumi
+name: manual
 
 on:
   workflow_dispatch:
