@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        run: ["init","gcp", "gh"]
+        run: ["init_2","gcp_2", "gh_2", "init_3","gcp_3", "gh_3", "init_4","gcp_4", "gh_4"]
     concurrency:
       group: ${{ matrix.run }}
       cancel-in-progress: false
@@ -35,11 +35,17 @@ jobs:
 
       - name: Pulumi Preview
         uses: pulumi/actions@v6
+        # with:
+        #   stack-name: v-german-pulumi-corp/demo-agent/${{ matrix.run }}
+        #   command: preview
+
+      - run: pulumi stack init v-german-pulumi-corp/demo-agent/${{ matrix.run }}
+
+      - name: Pulumi Preview
+        uses: pulumi/actions@v6
         with:
           stack-name: v-german-pulumi-corp/demo-agent/${{ matrix.run }}
           command: preview
-
-      # - run: pulumi stack init v-german-pulumi-corp/demo-agent/${{ matrix.run }}
 
       - run: |
           curl -fsSL https://get.pulumi.com/esc/install.sh | sh
