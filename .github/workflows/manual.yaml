@@ -41,5 +41,5 @@ jobs:
 
       - run: |
           curl -fsSL https://get.pulumi.com/esc/install.sh | sh
-      - run: /home/runner/.pulumi/bin/esc env open v-german-pulumi-corp/test --format dotenv >> $GITHUB_ENV
+      - run: /home/runner/.pulumi/bin/esc env open v-german-pulumi-corp/test/test --format dotenv >> $GITHUB_ENV
       - run: echo ${{env.EXAMPLE_SETTING}}
