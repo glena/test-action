@@ -37,7 +37,7 @@ jobs:
         uses: pulumi/actions@v5
         with:
           stack-name: v-german-pulumi-corp/demo-agent/${{ matrix.run }}
-          command: preview
+          command: init
 
       - run: |
           curl -fsSL https://get.pulumi.com/esc/install.sh | sh
