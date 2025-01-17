@@ -29,8 +29,9 @@ jobs:
       
       - uses: pulumi/auth-actions@v1
         with:
-          organization: testagents
-          requested-token-type: urn:pulumi:token-type:access_token:organization
+          organization: v-german-pulumi-corp
+          requested-token-type: urn:pulumi:token-type:access_token:personal
+          scope: user:v-german-pulumi-corp
 
       - name: Pulumi Preview
         uses: pulumi/actions@v5
