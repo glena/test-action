@@ -36,10 +36,10 @@ jobs:
       - name: Pulumi Preview
         uses: pulumi/actions@v5
         with:
-          stack-name: testagents/demo-agent/${{ matrix.run }}
+          stack-name: v-german-pulumi-corp/demo-agent/${{ matrix.run }}
           command: preview
 
       - run: |
           curl -fsSL https://get.pulumi.com/esc/install.sh | sh
-      - run: /home/runner/.pulumi/bin/esc env open testagents/test --format dotenv >> $GITHUB_ENV
+      - run: /home/runner/.pulumi/bin/esc env open v-german-pulumi-corp/test --format dotenv >> $GITHUB_ENV
       - run: echo ${{env.EXAMPLE_SETTING}}
