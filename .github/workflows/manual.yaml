@@ -13,17 +13,28 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        run: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        run: ["init","gcp", "gh"]
     concurrency:
       group: ${{ matrix.run }}
       cancel-in-progress: false
     steps:
       - run: echo ${{matrix.run}}
+      
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+      - run: yarn install --frozen-lockfile
+      
       - uses: pulumi/auth-actions@v1
         with:
           organization: testagents
           requested-token-type: urn:pulumi:token-type:access_token:organization
+
+      - name: Pulumi Preview
+        uses: pulumi/actions@v5
+        with:
+          stack-name: testagents/demo-agent/${{ matrix.run }}
+          command: preview
+
       - run: |
           curl -fsSL https://get.pulumi.com/esc/install.sh | sh
       - run: /home/runner/.pulumi/bin/esc env open testagents/test --format dotenv >> $GITHUB_ENV
