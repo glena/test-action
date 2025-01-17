@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   fetch_secret:
-    name: Preview
+    name: PrintSecret
     runs-on: ubuntu-latest
     strategy:
       matrix:
