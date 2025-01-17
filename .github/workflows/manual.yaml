@@ -1,0 +1,53 @@
+name: manual
+
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  fetch_secret:
+    name: PrintSecret
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        run: ["init_2","gcp_2", "gh_2", "init_3","gcp_3", "gh_3", "init_4","gcp_4", "gh_4"]
+    concurrency:
+      group: ${{ matrix.run }}
+      cancel-in-progress: false
+    steps:
+      - run: echo ${{matrix.run}}
+      
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+        
+      - run: yarn install --frozen-lockfile
+      
+      - uses: pulumi/auth-actions@v1
+        with:
+          organization: v-german-pulumi-corp
+          requested-token-type: urn:pulumi:token-type:access_token:personal
+          scope: user:v-german-pulumi-corp
+
+      - name: Pulumi Preview
+        uses: pulumi/actions@v6
+        # with:
+        #   stack-name: v-german-pulumi-corp/demo-agent/${{ matrix.run }}
+        #   command: preview
+
+      - run: pulumi stack init v-german-pulumi-corp/demo-agent/${{ matrix.run }}
+
+      - name: Pulumi Preview
+        uses: pulumi/actions@v6
+        with:
+          stack-name: v-german-pulumi-corp/demo-agent/${{ matrix.run }}
+          command: preview
+
+      - run: |
+          curl -fsSL https://get.pulumi.com/esc/install.sh | sh
+      - run: /home/runner/.pulumi/bin/esc env open v-german-pulumi-corp/test/test --format dotenv >> $GITHUB_ENV
+      - run: echo ${{env.EXAMPLE_SETTING}}
